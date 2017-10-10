@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="panel-heading">
+    <h1><i class="fa fa-check-square-o" aria-hidden="true"></i> To-do</h1>
+  </div>
+  <div class="panel-body">
+    <div>
+      <h3 style="font-size: 18px;">Add new task</h3>
+    </div>
+    <div>
+      <br/>
+      <form name="myForm">
+        <div class="form-group">
+          <label for="inputdefault-task-name">Name</label>
+          <input class="form-control" [(ngModel)]="model.name" [ngModelOptions]="{standalone: true}" id="inputdefault-task-name" type="text"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="sel1">Priority</label>
+          <select class="form-control" [(ngModel)]="model.priority" [ngModelOptions]="{standalone: true}" id="sel1" required>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+            </select>
+        </div>
+        <div>
+          <label>Status</label>
+          <div style="margin-left:100px;">
+            <input [(ngModel)]="model.status" [ngModelOptions]="{standalone: true}" name="status" value="In Progress" type="radio">In Progress
+          </div>
+          <div style="margin-left:100px;margin-top:10px;">
+            <input [(ngModel)]="model.status" [ngModelOptions]="{standalone: true}" name="status" value="Completed" type="radio">Completed
+          </div>
+        </div>
+        <div style="margin-top:20px;">
+          <button class="btn btn-danger" (click)="cancel()" type="button"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+          <button style="margin-left:10px;" class="btn btn-primary" (click)="addTodo()" type="button"><i class="fa fa-check" aria-hidden="true"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Name</td>
+          <td>Status</td>
+          <td>Priority</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tod of todo">
+            <td>{{tod.id}}</td>
+            <td>{{tod.name}}</td>
+            <td>{{tod.status}}</td>
+            <td>{{tod.priority}}</td>
+            <td><button (click)="deleteTodo(tod.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <p>Total Items: <span class="badge">{{todo.length}}</span></p>
+    </div>
+  </div>
+</div>
